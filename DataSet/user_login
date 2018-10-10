@@ -1,0 +1,57 @@
+import json
+
+filename = "users.json"
+with open(filename, "r+", encoding='utf8') as file:
+    '''opens json file and separates it by line by storing each line into an array'''
+    lines = file.readlines()
+    
+login_info = {}   
+'''array that will store usernames and passwords for each user(each line in the file is a user)'''
+
+for line in lines:
+    '''simply prints each element of the lines array displaying the information of each user'''
+    info = json.loads(line)
+    print("USER: " + str(info))
+    print("username: " + info["username"]) 
+    print("password: " + info["password"] + "\n")
+    login_info[info["username"]] = info["password"]
+    '''creates a new pair of username and password for each user(each line is a user)'''
+    print(login_info)
+     
+    
+print(lines)
+print(login_info)
+
+
+def login():
+    '''if username exists and the inputed strings match one of the key-value pairs, login is successful
+    '''
+    t = 0  
+    while t < 10:
+        '''prompts user for their username and password'''
+        username = input("Please enter username: ")
+        password = input("Please input password: ")
+        
+        if username in login_info:
+            if password == login_info[username]:
+                print("LOGIN SUCCESSFUL")
+                break
+            else:
+                print("Sorry, password does not exist.")
+        else:
+            print("Sorry this username or password does not exist.")
+        if t == 9:
+            print("Failed password attemps reached, your account has been locked.")
+            
+        t += 1
+    
+login()
+
+
+
+
+
+
+
+
+

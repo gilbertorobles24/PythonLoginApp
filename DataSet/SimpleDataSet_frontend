@@ -1,0 +1,9 @@
+from SimpleDataSet import User
+
+'''writes each attribute of User into a file'''
+filename = r'''C:\Users\User\Documents\dataset1.txt'''
+
+'''creates an instance of User object'''
+user1 = User.get_userinfo().write_to_file(filename)
+    
+print(user1)
